@@ -2,6 +2,7 @@ import { ChangeEvent, useState } from "react";
 import { FilterBar } from "../../components/filter-bar";
 import { useSearchCocktails } from "../../api";
 import { useDebounce } from "../../../../hooks";
+import classes from "./SearchCocktail.module.css";
 
 export const SearchCocktail = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -23,7 +24,7 @@ export const SearchCocktail = () => {
 
   return (
     <div>
-      <div>
+      <div className={classes.filterBarContainer}>
         <FilterBar onChange={handleOnChange} value={searchTerm} />
       </div>
     </div>
