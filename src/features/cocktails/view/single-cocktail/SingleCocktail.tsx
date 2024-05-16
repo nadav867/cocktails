@@ -20,7 +20,7 @@ export const SingleCocktail = () => {
   return (
     <div className={classes.container}>
       <h1>{cocktail.strDrink}</h1>
-      <img src={cocktail.strDrinkThumb} />
+      <img className={classes.img} src={cocktail.strDrinkThumb} />
       <div className={classes.ingredients}>
         <h2>Ingredients</h2>
         <ul>
