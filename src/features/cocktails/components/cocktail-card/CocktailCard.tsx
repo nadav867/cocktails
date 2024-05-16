@@ -1,5 +1,7 @@
+import { Link } from "react-router-dom";
 import { Card, CustomLink } from "../../../../components";
 import classes from "./CocktailCard.module.css";
+import { routes } from "../../../../routes";
 
 type CocktailCardProp = {
   cocktail: any;
@@ -7,16 +9,10 @@ type CocktailCardProp = {
 
 export const CocktailCard = ({ cocktail }: CocktailCardProp) => {
   return (
-    <Card>
-      <div>
-        <img src={cocktail.strDrinkThumb} />
-      </div>
-      <div className={classes.content}>
-        <h2>{cocktail.strDrink}</h2>
-        <div className={classes.link}>
-          <CustomLink to="/">Show More</CustomLink>
-        </div>
-      </div>
-    </Card>
+    <Link to="">
+      <Card>
+        <img className={classes.img} src={cocktail.strDrinkThumb} />
+      </Card>
+    </Link>
   );
 };

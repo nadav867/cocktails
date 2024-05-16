@@ -26,7 +26,7 @@ export const SearchCocktail = () => {
   };
 
   return (
-    <div>
+    <div className={classes.container}>
       <div className={classes.filterBarContainer}>
         <FilterBar onChange={handleOnChange} value={searchTerm} />
       </div>

@@ -1,8 +1,7 @@
 .filterBarContainer {
-  position: sticky;
+  background-color: white;
 }
 
 .container {
-  height: 100%;
   display: grid;
 }
