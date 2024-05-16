@@ -4,12 +4,15 @@ import clsx from "clsx";
 
 export type CardProps = {
   children: ReactNode;
-  pointer?: boolean;
+  onClick?: () => void;
 };
 
-export const Card = ({ children, pointer }: CardProps) => {
+export const Card = ({ children, onClick }: CardProps) => {
   return (
-    <div className={clsx(classes.container, { [classes.pointer]: pointer })}>
+    <div
+      onClick={onClick}
+      className={clsx(classes.container, { [classes.pointer]: !!onClick })}
+    >
       {children}
     </div>
   );

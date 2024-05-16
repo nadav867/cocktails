@@ -6,6 +6,7 @@ type CocktailGridProps = {
 };
 
 export const CocktailGrid = ({ cocktails }: CocktailGridProps) => {
+  if (!cocktails?.length) return "No Cocktails Found";
   return (
     <div className={classes.container}>
       {cocktails.map((cocktail) => (
