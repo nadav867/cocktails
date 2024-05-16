@@ -4,9 +4,7 @@ import { useSearchCocktails } from "../../api";
 import { useDebounce } from "../../../../hooks";
 import classes from "./SearchCocktail.module.css";
 
-import mockCocktails from "../../../../__mock__/mockCocktails.json";
 import { CocktailGrid } from "../../components";
-import { Loader } from "../../../../components";
 
 export const SearchCocktail = () => {
   const [searchTerm, setSearchTerm] = useState("");
