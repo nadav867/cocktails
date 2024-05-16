@@ -18,8 +18,6 @@ export const SearchCocktail = () => {
     enabled: !!debouncedSearchTerm.trim(),
   });
 
-  console.log({ data });
-
   const handleOnChange = ({
     target: { value },
   }: ChangeEvent<HTMLInputElement>) => {
@@ -29,12 +27,11 @@ export const SearchCocktail = () => {
   return (
     <div className={classes.container}>
       <FilterBar onChange={handleOnChange} value={searchTerm} />
-
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <CocktailGrid cocktails={mockCocktails?.drinks} />
-      )}
+      <CocktailGrid
+        isLoading={isLoading}
+        isError={isError}
+        cocktails={data?.drinks}
+      />
     </div>
   );
 };
