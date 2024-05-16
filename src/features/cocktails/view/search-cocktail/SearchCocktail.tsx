@@ -4,6 +4,9 @@ import { useSearchCocktails } from "../../api";
 import { useDebounce } from "../../../../hooks";
 import classes from "./SearchCocktail.module.css";
 
+import { mockCocktails } from "../../../../__mock__";
+import { CocktailGrid } from "../../components";
+
 export const SearchCocktail = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -26,6 +29,9 @@ export const SearchCocktail = () => {
     <div>
       <div className={classes.filterBarContainer}>
         <FilterBar onChange={handleOnChange} value={searchTerm} />
+      </div>
+      <div>
+        <CocktailGrid cocktails={mockCocktails} />
       </div>
     </div>
   );
