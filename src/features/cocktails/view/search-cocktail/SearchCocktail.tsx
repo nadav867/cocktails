@@ -8,6 +8,7 @@ import { CocktailGrid } from "../../components";
 
 export const SearchCocktail = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [isAddCocktailModalOpen, setIsAddCocktailModalOpen] = useState(false);
 
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
@@ -23,13 +24,15 @@ export const SearchCocktail = () => {
   };
 
   return (
-    <div className={classes.container}>
-      <FilterBar onChange={handleOnChange} value={searchTerm} />
-      <CocktailGrid
-        isLoading={isLoading}
-        isError={isError}
-        cocktails={data?.drinks}
-      />
-    </div>
+    <>
+      <div className={classes.container}>
+        <FilterBar onChange={handleOnChange} value={searchTerm} />
+        <CocktailGrid
+          isLoading={isLoading}
+          isError={isError}
+          cocktails={data?.drinks}
+        />
+      </div>
+    </>
   );
 };
