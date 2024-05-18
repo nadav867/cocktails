@@ -15,6 +15,7 @@ export const CocktailCard = ({ cocktail }: CocktailCardProp) => {
           loading="lazy"
           className={classes.img}
           src={cocktail.strDrinkThumb}
+          alt=""
         />
       </Card>
     </Link>

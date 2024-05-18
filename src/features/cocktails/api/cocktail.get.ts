@@ -6,9 +6,9 @@ type SearchCocktailArgs = {
   enabled?: boolean;
 };
 
-type GetSingleCocktailByIdArgs = { id: string };
+type GetSingleCocktailByIdArgs = { id: string; enabled?: boolean };
 
-const searchCocktail = async ({ search }: SearchCocktailArgs) => {
+export const searchCocktail = async ({ search }: SearchCocktailArgs) => {
   const { data } = await axios.get(
     `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${search}`
   );
@@ -22,11 +22,14 @@ const getSingleCocktailById = async ({ id }: GetSingleCocktailByIdArgs) => {
   return data;
 };
 
-export const useGetSingleCocktailById = ({ id }: GetSingleCocktailByIdArgs) => {
+export const useGetSingleCocktailById = ({
+  id,
+  enabled,
+}: GetSingleCocktailByIdArgs) => {
   return useQuery({
     queryFn: () => getSingleCocktailById({ id }),
     queryKey: ["single_cocktail", id],
-    enabled: !!id,
+    enabled,
   });
 };
 

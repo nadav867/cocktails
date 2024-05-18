@@ -3,18 +3,23 @@ import { extractIngredients } from "./exract-inggredients";
 import { useGetSingleCocktailById } from "../../api";
 import { useParams } from "react-router-dom";
 import { ErrorView, Loader } from "../../../../components";
+import { useCocktailStore } from "../../store";
 
 export const SingleCocktail = () => {
+  const { savedCocktails } = useCocktailStore();
   const { id = "" } = useParams();
+
+  const savedCocktail = savedCocktails.find((c) => c.idDrink === id);
 
   const { data, isError, isLoading } = useGetSingleCocktailById({
     id,
+    enabled: !savedCocktail && !!id,
   });
 
   if (isLoading) return <Loader />;
-  if (isError || !data?.drinks) return <ErrorView />;
+  if (isError || (!data?.drinks && !savedCocktail)) return <ErrorView />;
 
-  const cocktail = data.drinks[0];
+  const cocktail = savedCocktail || data.drinks[0];
   const ingredeints = extractIngredients(cocktail);
 
   return (

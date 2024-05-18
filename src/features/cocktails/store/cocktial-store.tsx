@@ -1,18 +1,20 @@
 import { create } from "zustand";
 
 type CocktailStore = {
-  searchTrem: string;
+  searchTerm: string;
   setSearchTerm: (value: string) => void;
+  savedCocktails: Array<any>;
   cocktails: Array<any>;
   setCocktails: (cocktails: Array<any>) => void;
   saveCocktail: (cocktail: any) => void;
 };
 
 export const useCocktailStore = create<CocktailStore>((set) => ({
-  searchTrem: "",
-  setSearchTerm: (value) => set(() => ({ searchTrem: value })),
+  searchTerm: "",
+  setSearchTerm: (searchTerm) => set(() => ({ searchTerm })),
+  savedCocktails: [],
   cocktails: [],
   setCocktails: (cocktails) => set(() => ({ cocktails })),
   saveCocktail: (cocktail) =>
-    set((state) => ({ cocktails: [...state.cocktails, cocktail] })),
+    set((state) => ({ savedCocktails: [...state.savedCocktails, cocktail] })),
 }));

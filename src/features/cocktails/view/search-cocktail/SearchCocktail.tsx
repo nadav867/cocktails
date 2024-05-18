@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useMemo, useState } from "react";
 import { FilterBar } from "../../components/filter-bar";
 import { useSearchCocktails } from "../../api";
 import { useDebounce } from "../../../../hooks";
@@ -7,8 +7,11 @@ import classes from "./SearchCocktail.module.css";
 import { CocktailGrid } from "../../components";
 import { AddCocktailModal } from "../../components/add-cocktail-modal";
 import { Button } from "../../../../components";
+import { findSavedCocktails } from "./find-saved-cocktails";
+import { useCocktailStore } from "../../store";
 
 export const SearchCocktail = () => {
+  const { savedCocktails } = useCocktailStore();
   const [searchTerm, setSearchTerm] = useState("");
   const [isAddCocktailModalOpen, setIsAddCocktailModalOpen] = useState(false);
 
@@ -25,6 +28,14 @@ export const SearchCocktail = () => {
     setSearchTerm(value);
   };
 
+  const allCocktails = useMemo(
+    () => [
+      ...(data?.drinks || []),
+      ...findSavedCocktails(debouncedSearchTerm, savedCocktails),
+    ],
+    [data, debouncedSearchTerm, savedCocktails]
+  );
+
   return (
     <>
       <div className={classes.container}>
@@ -38,7 +49,7 @@ export const SearchCocktail = () => {
         <CocktailGrid
           isLoading={isLoading}
           isError={isError}
-          cocktails={data?.drinks}
+          cocktails={allCocktails}
         />
       </div>
       <AddCocktailModal

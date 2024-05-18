@@ -2,6 +2,7 @@ import { Button, Input, Modal, ModalProps } from "../../../../components";
 import { useForm, SubmitHandler, useFieldArray } from "react-hook-form";
 import { useCocktailStore } from "../../store";
 import classes from "./AddCocktailModal.module.css";
+import { v4 as uuid } from "uuid";
 
 type AddCocktailModalProps = {} & Omit<ModalProps, "children">;
 
@@ -16,7 +17,6 @@ export const AddCocktailModal = ({
   onClose,
 }: AddCocktailModalProps) => {
   if (!isOpen) return null;
-
   const { saveCocktail } = useCocktailStore();
 
   const {
@@ -50,8 +50,10 @@ export const AddCocktailModal = ({
     );
 
     const trasnformedData = {
+      idDrink: uuid(),
       strDrink: data.name,
       strInstructions: data.instructions,
+      strDrinkThumb: "https://picsum.photos/700",
       ...ingredients,
     };
 
