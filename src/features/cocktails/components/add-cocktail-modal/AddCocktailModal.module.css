@@ -1,0 +1,33 @@
+.addIngredientButtonContainer {
+  margin-bottom: 24px;
+}
+
+.addIngredientsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.ingredientInput {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.error {
+  color: red;
+}
+
+.textArea {
+  width: 100%;
+}
+
+.instructionsContainer {
+  margin-bottom: 12px;
+}
+
+.actionsContainer {
+  display: flex;
+  gap: 6px;
+  justify-content: end;
+}

@@ -5,6 +5,8 @@ import { useDebounce } from "../../../../hooks";
 import classes from "./SearchCocktail.module.css";
 
 import { CocktailGrid } from "../../components";
+import { AddCocktailModal } from "../../components/add-cocktail-modal";
+import { Button } from "../../../../components";
 
 export const SearchCocktail = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -26,13 +28,23 @@ export const SearchCocktail = () => {
   return (
     <>
       <div className={classes.container}>
-        <FilterBar onChange={handleOnChange} value={searchTerm} />
+        <div style={{ display: "flex", gap: 12, marginBottom: 24 }}>
+          <FilterBar onChange={handleOnChange} value={searchTerm} />
+          <Button onClick={() => setIsAddCocktailModalOpen(true)}>
+            Add Cocktail
+          </Button>
+        </div>
+
         <CocktailGrid
           isLoading={isLoading}
           isError={isError}
           cocktails={data?.drinks}
         />
       </div>
+      <AddCocktailModal
+        isOpen={isAddCocktailModalOpen}
+        onClose={() => setIsAddCocktailModalOpen(false)}
+      />
     </>
   );
 };
